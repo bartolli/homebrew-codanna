@@ -1,0 +1,71 @@
+name: Test Formula
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'Formula/**'
+  pull_request:
+    paths:
+      - 'Formula/**'
+  workflow_dispatch:
+
+jobs:
+  audit:
+    name: Audit formula
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run brew audit
+        run: |
+          brew audit --strict Formula/codanna.rb
+
+  install-macos:
+    name: Install (macOS)
+    strategy:
+      matrix:
+        os: [macos-14, macos-15]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Tap and install
+        run: |
+          brew tap bartolli/codanna "$PWD"
+          brew install codanna
+
+      - name: Run tests
+        run: brew test codanna
+
+      - name: Verify binary
+        run: |
+          codanna --version
+          codanna --help
+
+  install-linux:
+    name: Install (Linux)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Homebrew
+        run: |
+          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+          echo "/home/linuxbrew/.linuxbrew/bin" >> $GITHUB_PATH
+
+      - name: Tap and install
+        run: |
+          eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+          brew tap bartolli/codanna "$PWD"
+          brew install codanna
+
+      - name: Run tests
+        run: |
+          eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+          brew test codanna
+
+      - name: Verify binary
+        run: |
+          eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+          codanna --version

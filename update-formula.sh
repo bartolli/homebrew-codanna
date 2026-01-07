@@ -40,9 +40,14 @@ echo "macos-x64:    $macos_x64"
 cat > "$FORMULA" << EOF
 class Codanna < Formula
   desc "Code intelligence system with semantic search"
-  homepage "https://codanna.dev"
+  homepage "https://github.com/${REPO}"
   version "${version}"
   license "MIT"
+
+  livecheck do
+    url :stable
+    regex(/^v?(\d+(?:\.\d+)+)$/i)
+  end
 
   on_macos do
     on_arm do
@@ -67,7 +72,8 @@ class Codanna < Formula
   end
 
   test do
-    assert_match version.to_s, shell_output("#{bin}/codanna --version")
+    system bin/"codanna", "init"
+    assert_path_exists testpath/".codanna"
   end
 end
 EOF
