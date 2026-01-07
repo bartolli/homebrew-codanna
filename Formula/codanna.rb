@@ -1,24 +1,24 @@
 class Codanna < Formula
   desc "Code intelligence system with semantic search"
   homepage "https://codanna.dev"
-  version "0.9.0"
+  version "0.9.10"
   license "MIT"
 
   on_macos do
     on_arm do
       url "https://github.com/bartolli/codanna/releases/download/v#{version}/codanna-#{version}-macos-arm64.tar.xz"
-      sha256 "a366a808562961480945ebad38941ff4510be24f106c9f3f67a9f1eb7a5d7bf7"
+      sha256 "7d7593e5df702fcc2ddeaf224db4ff084302b4a3474fb997cbfdf6933a3a85fa"
     end
     on_intel do
       url "https://github.com/bartolli/codanna/releases/download/v#{version}/codanna-#{version}-macos-x64.tar.xz"
-      sha256 "06cd58417769969d1eedb2b2b6b7d18491dce90d2040cfeca9f93e3e9dca2530"
+      sha256 "e44d3053396aa9e2c194e12b80668355a5e914f3b206311683354a1d9e04e1f8"
     end
   end
 
   on_linux do
     on_intel do
       url "https://github.com/bartolli/codanna/releases/download/v#{version}/codanna-#{version}-linux-x64.tar.xz"
-      sha256 "ff28ac89b4e0db0356fb96978ed725335e7ed78c3ce93767806f118464eeebf8"
+      sha256 "ff1d8a1fd8460b5871ed372005af7f0b29e533e532c9dc681999dd0d9fb95d57"
     end
   end
 
