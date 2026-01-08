@@ -2,7 +2,7 @@ class Codanna < Formula
   desc "Code intelligence system with semantic search"
   homepage "https://github.com/bartolli/codanna"
   version "0.9.10"
-  license "MIT"
+  license "Apache-2.0"
 
   livecheck do
     url :stable

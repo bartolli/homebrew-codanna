@@ -42,7 +42,7 @@ class Codanna < Formula
   desc "Code intelligence system with semantic search"
   homepage "https://github.com/${REPO}"
   version "${version}"
-  license "MIT"
+  license "Apache-2.0"
 
   livecheck do
     url :stable
