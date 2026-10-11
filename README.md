@@ -1,21 +1,10 @@
-# Homebrew Tap for Codanna
+# Retired
 
-## Installation
+This tap is no longer maintained. codanna is in homebrew-core:
 
 ```bash
-brew tap bartolli/codanna
+brew untap bartolli/codanna
 brew install codanna
 ```
 
-## Upgrade
-
-```bash
-brew upgrade codanna
-```
-
-## Uninstall
-
-```bash
-brew uninstall codanna
-brew untap bartolli/codanna
-```
+Formula: https://github.com/Homebrew/homebrew-core/blob/HEAD/Formula/c/codanna.rb
